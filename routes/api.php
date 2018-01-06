@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,9 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['namespace' => 'TMoney'], function () {
+    Route::get('/access_token', 'GeneralController@getAccessToken');
+    Route::get('/email_check/{email}', 'GeneralController@checkEmail');
 });
