@@ -21,3 +21,18 @@ function getAccessToken() {
         ]
     ]);
 }
+
+
+function emailCheck($email) {
+    $client = new Client();
+    return $client->post(Config::get('tmoney.base_url').'/email-check', [
+        'headers' => [
+            'Authorization' => Config::get('tmoney.authorization')
+        ],
+        'form_params' => [
+            'userName' => $email,
+            'terminal' => Config::get('tmoney.terminal'),
+            'apiKey' => Config::get('tmoney.api_key')
+        ]
+    ]);
+}

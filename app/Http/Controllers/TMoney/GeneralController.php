@@ -40,19 +40,9 @@ class GeneralController extends Controller
 
     public function emailCheck($email) {
         try {
-            $response = $this->client->post(Config::get('tmoney.base_url').'/email-check', [
-                'headers' => [
-                    'Authorization' => Config::get('tmoney.authorization')
-                ],
-                'form_params' => [
-                    'userName' => $email,
-                    'terminal' => Config::get('tmoney.terminal'),
-                    'apiKey' => Config::get('tmoney.api_key')
-                ]
-            ]);
-            $tokenRequest = $response->getBody();
-            Log::info($tokenRequest);
-            $json = json_decode($tokenRequest);
+            $response = emailCheck($email);
+            $body = $response->getBody();
+            $json = json_decode($body);
             return response()->json(['error' => false, 'response' => $json]);
         } catch (BadResponseException $e) {
             return $this->responseError($e);

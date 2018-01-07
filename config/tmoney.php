@@ -8,14 +8,15 @@
 
 $production =  "https://prodapi-app.tmoney.co.id/api/";
 $sandbox = "https://api-sandbox-app.tmoney.co.id/api/";
-$accessTokenProduction = "T-MONEY_3aa121a55392956bad9b5af0927b8e18";
+$accessTokenProduction = "T-MONEY_cc80ada3203052d4e5fe44678a981d88";
 $accessTokenSandbox = "T-MONEY_PUBLICKEYSANDBOX";
 
+$mainapiSandbox = "https://api.mainapi.net/tmoney/1.0.0";
 
 return [
     'base_url' => $sandbox,
     'terminal' => 'MAINAPI-TEST', // get your own production terminal by contacting tmoney representative
     'api_key' => $accessTokenSandbox,
     'private_key' => $accessTokenSandbox,
-    'authorization' => 'Basic RUJ6eUJrdENIdTBnQnVBcEhjbmVqYXpEUjVjYTo1X0gybG83aUZZZFl4Nzh3TTRlMEs4SFNaNFlh'
+    'authorization' => 'Basic WjZmd3hXMHpsTVdhUXp0d3hnSTdKUlFOMzlJYTpTWTRtdExVOHdibjB6YlQwRThoTkN3VUNuYTRh'
 ];
