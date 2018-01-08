@@ -6,12 +6,12 @@
  * Time: 20.33
  */
 
-$production =  "https://prodapi-app.tmoney.co.id/api/";
-$sandbox = "https://api-sandbox-app.tmoney.co.id/api/";
+$production =  "https://prodapi-app.tmoney.co.id/api";
+$sandbox = "https://api-sandbox-app.tmoney.co.id/api";
 $accessTokenProduction = "T-MONEY_cc80ada3203052d4e5fe44678a981d88";
 $accessTokenSandbox = "T-MONEY_PUBLICKEYSANDBOX";
 
-$mainapiSandbox = "https://api.mainapi.net/tmoney/1.0.0";
+$mainapiSandbox = "https://api.mainapi.net/tmoney/1.0.0-sandbox";
 
 return [
     'base_url' => $sandbox,
