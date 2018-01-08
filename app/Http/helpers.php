@@ -27,7 +27,8 @@ function emailCheck($email) {
     $client = new Client();
     return $client->post(Config::get('tmoney.base_url').'/email-check', [
         'headers' => [
-            'Authorization' => Config::get('tmoney.authorization')
+            'Authorization' => Config::get('tmoney.authorization'),
+            'Accept' => 'application/json'
         ],
         'form_params' => [
             'userName' => $email,

@@ -3,27 +3,44 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-     * Default formatter for error response API
-     *
+     * @param Request $request
      * @param Exception $e
      * @return \Illuminate\Http\JsonResponse
      */
-    public function responseError(Exception $e) {
-        return response()->json(['error' => true, 'code' => $e->getCode(), 'message' => $e->getMessage()], $e->getCode());
+    public function responseError(Request $request, Exception $e)
+    {
+        return response()->json([
+            'error' => true,
+            'code' => $e->getCode(),
+            'url' => $request->url(),
+            'message' => $e->getMessage()
+        ], $e->getCode());
     }
 
 
-    public function responseSuccess($response) {
-        return response()->json(['error' => false, 'response' => $response]);
+    /**
+     * @param Request $request
+     * @param $response
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function responseSuccess(Request $request, $response)
+    {
+        return response()->json([
+            'error' => false,
+            'url' => $request->url(),
+            'response' => $response
+        ]);
+
     }
 }

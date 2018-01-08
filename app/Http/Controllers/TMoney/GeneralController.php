@@ -21,7 +21,7 @@ class GeneralController extends Controller
         $this->client = new Client();
     }
 
-    public function getAccessToken() {
+    public function getAccessToken(Request $request) {
         try {
             $response = getAccessToken();
             $tokenRequest = $response->getBody();
@@ -33,19 +33,19 @@ class GeneralController extends Controller
                 return  response()->json(['error' => false, 'access_token' => $json->access_token]);
             }
         } catch (BadResponseException $e) {
-            return $this->responseError($e);
+            return $this->responseError($request, $e);
         }
 
     }
 
-    public function emailCheck($email) {
+    public function emailCheck(Request $request, $email) {
         try {
             $response = emailCheck($email);
             $body = $response->getBody();
             $json = json_decode($body);
-            return response()->json(['error' => false, 'response' => $json]);
+            return $this->responseSuccess($request, $json);
         } catch (BadResponseException $e) {
-            return $this->responseError($e);
+            return $this->responseError($request, $e);
         }
     }
 }
