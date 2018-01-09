@@ -57,6 +57,21 @@ function signUp($accType, $email, $password, $fullname, $phone) {
     ]);
 }
 
+function emailVerification($activationCode) {
+    $client = new Client();
+    return $client->post(Config::get('tmoney.base_url').'/email-verification', [
+        'headers' => [
+            'Authorization' => Config::get('tmoney.authorization'),
+            'Accept' => 'application/json'
+        ],
+        'form_params' => [
+            'code' => $activationCode,
+            'terminal' => Config::get('tmoney.terminal'),
+            'apiKey' => Config::get('tmoney.api_key')
+        ]
+    ]);
+}
+
 function signIn($email, $password) {
     $client = new Client();
     return $client->post(Config::get('tmoney.base_url').'/sign-in', [
@@ -68,7 +83,26 @@ function signIn($email, $password) {
             'userName' => $email,
             'password' => $password,
             'terminal' => Config::get('tmoney.terminal'),
-            'apiKey' => Config::get('tmoney.api_key')
+            'apiKey' => Config::get('tmoney.api_key'),
+            'signature' => tmoney_signature($email)
         ]
     ]);
+}
+
+function tmoney_signature($email, $phoneNo = '')
+{
+    $params = [
+        'username' => $email,
+        'dateTime' => $phoneNo,
+        'terminal' => Config::get('tmoney.terminal'),
+        'apiKey' => Config::get('tmoney.api_key'),
+    ];
+    $signature = implode('', $params);
+    return sha256($signature);
+}
+
+function sha256($string)
+{
+    $result = hash_hmac('sha256', $string, Config::get('tmoney.private_key'), false);
+    return urlencode($result);
 }

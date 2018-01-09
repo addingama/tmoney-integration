@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\SignIn;
 use App\Events\SignUp;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Queue\InteractsWithQueue;
@@ -37,8 +38,16 @@ class SignUpListener
                 $event->phone);
             $body = $response->getBody();
             $json = json_decode($body);
-            // TODO: save idTmoney, idFusion to database
-            dd($json);
+            // TODO: save idTmoney, idFusion to database and dispatch email verification
+            if ($json->resultCode == 0) {
+                // TODO: call email verification helper
+                $verificationResponse = emailVerification($json->activationCode);
+                $verificationBody = $verificationResponse->getBody();
+                $verificationJson = json_decode($verificationBody);
+                if ($verificationJson->resultCode == 0) {
+                    event(new SignIn($event->email, $event->password));
+                }
+            }
         } catch (BadResponseException $e) {
             Log::info($e->getMessage());
         }

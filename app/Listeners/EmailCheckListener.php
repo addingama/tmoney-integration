@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\EmailCheck;
+use App\Events\SignIn;
 use App\Events\SignUp;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Queue\InteractsWithQueue;
@@ -39,7 +40,7 @@ class EmailCheckListener implements ShouldQueue
                 event(new SignUp($event->email, $event->password, $event->fullname, $event->phone));
             } else {
                 // TODO: dispatch login to TMoney
-
+                event(new SignIn($event->email, $event->password));
             }
         } catch (BadResponseException $e) {
             Log::info($e->getMessage());
