@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'TMoney'], function () {
     Route::get('/access_token', 'GeneralController@getAccessToken');
     Route::get('/email_check/{email}', 'GeneralController@emailCheck');
+    Route::get('/email_verification/{activationCode}', 'GeneralController@emailVerification');
 });

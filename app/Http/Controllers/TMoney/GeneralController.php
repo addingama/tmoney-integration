@@ -45,4 +45,15 @@ class GeneralController extends Controller
             return $this->responseError($request, $e);
         }
     }
+
+    public function emailVerification(Request $request, $activationCode) {
+        try {
+            $response = emailVerification($activationCode);
+            $body = $response->getBody();
+            $json = json_decode($body);
+            return $this->responseSuccess($request, $json);
+        } catch (BadResponseException $e) {
+            return $this->responseError($request, $e);
+        }
+    }
 }
