@@ -9,32 +9,23 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Support\Facades\Log;
 
-class EmailCheck
+class SignIn
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $email;
     public $password;
-    public $fullname;
-    public $phone;
 
     /**
      * Create a new event instance.
-     * @param $email
-     * @param string $password
-     * @param string $fullname
-     * @param string $phone
+     *
+     * @return void
      */
-    public function __construct($email, $password = '', $fullname = '', $phone = '')
+    public function __construct($email, $password)
     {
         $this->email = $email;
         $this->password = $password;
-        $this->fullname = $fullname;
-        $this->phone = $phone;
-
-        Log::info('[EVENT] EmailCheck');
     }
 
     /**

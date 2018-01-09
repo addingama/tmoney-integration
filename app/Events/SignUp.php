@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Log;
 
-class EmailCheck
+class SignUp
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -34,7 +34,7 @@ class EmailCheck
         $this->fullname = $fullname;
         $this->phone = $phone;
 
-        Log::info('[EVENT] EmailCheck');
+        Log::info('[EVENT] SignUp');
     }
 
     /**

