@@ -5,10 +5,7 @@ namespace App\Listeners;
 use App\Events\SignIn;
 use App\User;
 use GuzzleHttp\Exception\BadResponseException;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 
 class SignInListener
 {
@@ -25,7 +22,7 @@ class SignInListener
     /**
      * Handle the event.
      *
-     * @param  SignIn  $event
+     * @param  SignIn $event
      * @return void
      */
     public function handle(SignIn $event)
@@ -44,8 +41,10 @@ class SignInListener
                     'idTmoney' => $json->user->idTmoney,
                     'idFusion' => $json->user->idFusion
                 ]);
-                Session::put('tmoney_token', $json->user->token);
-                Session::put('tmoney_token_expire', $json->user->tokenExpiry);
+                session([
+                    TMONEY_TOKEN => $json->user->token,
+                    TMONEY_TOKEN_EXPIRY => $json->user->tokenExpiry
+                ]);
             }
         } catch (BadResponseException $e) {
             Log::info($e->getMessage());

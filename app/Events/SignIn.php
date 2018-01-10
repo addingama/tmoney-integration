@@ -16,6 +16,7 @@ class SignIn
 
     public $email;
     public $password;
+    
 
     /**
      * Create a new event instance.

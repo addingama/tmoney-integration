@@ -42,6 +42,13 @@ $app->singleton(
 );
 
 /*
+ * Define constants
+ */
+
+define('TMONEY_TOKEN', 'tmoney_token');
+define('TMONEY_TOKEN_EXPIRY', 'tmoney_token_expire');
+
+/*
 |--------------------------------------------------------------------------
 | Return The Application
 |--------------------------------------------------------------------------

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Events\EmailCheck;
+use App\Events\SignIn;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -49,6 +50,8 @@ class LoginController extends Controller
     {
         if (!$user->idTmoney) {
             event(new EmailCheck($request['email'], $request['password'], $user->name, $user->phone));
+        } else {
+            event(new SignIn($request['email'], $request['password']));
         }
     }
 }

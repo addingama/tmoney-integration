@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Created by PhpStorm.
@@ -85,6 +86,23 @@ function signIn($email, $password) {
             'terminal' => Config::get('tmoney.terminal'),
             'apiKey' => Config::get('tmoney.api_key'),
             'signature' => tmoney_signature($email)
+        ]
+    ]);
+}
+
+function myProfile($idTmoney, $idFusion, $token) {
+    $client = new Client();
+    return $client->post(Config::get('tmoney.base_url').'/my-profile', [
+        'headers' => [
+            'Authorization' => Config::get('tmoney.authorization'),
+            'Accept' => 'application/json'
+        ],
+        'form_params' => [
+            'idTmoney' => $idTmoney,
+            'idFusion' => $idFusion,
+            'token' => $token,
+            'terminal' => Config::get('tmoney.terminal'),
+            'apiKey' => Config::get('tmoney.api_key'),
         ]
     ]);
 }

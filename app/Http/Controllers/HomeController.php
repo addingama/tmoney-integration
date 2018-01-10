@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use JavaScript;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        JavaScript::put([
+            TMONEY_TOKEN => session(TMONEY_TOKEN)
+        ]);
         return view('home');
     }
 }
