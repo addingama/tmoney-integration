@@ -56,4 +56,16 @@ class GeneralController extends Controller
             return $this->responseError($request, $e);
         }
     }
+
+    public function myProfile(Request $request) {
+        try {
+
+            $response = myProfile($request['idTmoney'], $request['idFusion'], $request['token']);
+            $body = $response->getBody();
+            $json = json_decode($body);
+            return $this->responseSuccess($request, $json);
+        } catch (BadResponseException $e) {
+            return $this->responseError($request, $e);
+        }
+    }
 }

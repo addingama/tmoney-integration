@@ -38,6 +38,45 @@
 @section('scripts')
     <script>
         localStorage.setItem('token', window.tmoney_token);
+        localStorage.setItem('idTmoney', window.idTmoney);
+        localStorage.setItem('idFusion', window.idFusion);
 
+        // setting numeral
+        numeral.register('locale', 'id', {
+            delimiters: {
+                thousands: '.',
+                decimal: ','
+            },
+            abbreviations: {
+                thousand: 'k',
+                million: 'm',
+                billion: 'b',
+                trillion: 't'
+            },
+            currency: {
+                symbol: 'Rp.'
+            }
+        });
+        numeral.locale('id');
+
+        // update dashboard
+        $('#balance-value').text(localStorage.getItem('balance'));
+
+        // get balance
+        $(function() {
+            axios.post('/api/my_profile', {
+                idTmoney: localStorage.getItem('idTmoney'),
+                idFusion: localStorage.getItem('idFusion'),
+                token: localStorage.getItem('token'),
+            })
+                .then(function (response) {
+                    const balance = numeral(response.data.response.balance).format('$0,0.00');
+                    localStorage.setItem('balance', balance);
+                    $('#balance-value').text(balance);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        })
     </script>
 @endsection

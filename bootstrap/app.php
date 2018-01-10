@@ -46,6 +46,8 @@ $app->singleton(
  */
 
 define('TMONEY_TOKEN', 'tmoney_token');
+define('ID_TMONEY', 'idTmoney');
+define('ID_FUSION', 'idFusion');
 define('TMONEY_TOKEN_EXPIRY', 'tmoney_token_expire');
 
 /*
