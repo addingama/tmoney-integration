@@ -4,7 +4,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="panel panel-default ">
@@ -16,20 +16,27 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                {{--<div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
-
-                    <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        You are logged in!
+                    <div class="col-md-3">
+                        <div class="panel panel-default ">
+                            <a href="{{ url('/topup') }}" class="no-hover">
+                                <div class="panel-body">
+                                    <h3>Topup Saldo</h3>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>--}}
+                    <div class="col-md-3">
+                        <div class="panel panel-default ">
+                            <a href="{{ url('/transactions') }}" class="no-hover">
+                                <div class="panel-body">
+                                    <h3>Transactions</h3>
+                                    <i class="fa fa-exchange" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -40,6 +47,7 @@
         localStorage.setItem('token', window.tmoney_token);
         localStorage.setItem('idTmoney', window.idTmoney);
         localStorage.setItem('idFusion', window.idFusion);
+        localStorage.setItem('authorization', 'Bearer ' + window.authorization);
 
         // setting numeral
         numeral.register('locale', 'id', {
@@ -48,9 +56,9 @@
                 decimal: ','
             },
             abbreviations: {
-                thousand: 'k',
-                million: 'm',
-                billion: 'b',
+                thousand: 'rb',
+                million: 'jt',
+                billion: 'm',
                 trillion: 't'
             },
             currency: {
@@ -68,6 +76,10 @@
                 idTmoney: localStorage.getItem('idTmoney'),
                 idFusion: localStorage.getItem('idFusion'),
                 token: localStorage.getItem('token'),
+            }, {
+                headers: {
+                    Authorization: localStorage.getItem('authorization')
+                }
             })
                 .then(function (response) {
                     const balance = numeral(response.data.response.balance).format('$0,0.00');

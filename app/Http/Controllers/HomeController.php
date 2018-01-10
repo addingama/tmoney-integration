@@ -27,10 +27,13 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+        // generate passport token
+
         JavaScript::put([
             TMONEY_TOKEN => session(TMONEY_TOKEN),
             ID_TMONEY => $user->idTmoney,
-            ID_FUSION => $user->idFusion
+            ID_FUSION => $user->idFusion,
+            'authorization' => $user->createToken('auth_token')->accessToken
         ]);
         return view('home');
     }
