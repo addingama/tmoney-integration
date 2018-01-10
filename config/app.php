@@ -170,7 +170,6 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -229,7 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-        'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+
     ],
 
 ];

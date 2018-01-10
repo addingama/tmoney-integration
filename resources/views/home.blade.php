@@ -24,6 +24,6 @@
 
 @section('scripts')
     <script>
-        localStorage.setItem('token', window.tmoney_token);
+        sessionStorage.setItem('token', window.tmoney_token);
     </script>
 @endsection
