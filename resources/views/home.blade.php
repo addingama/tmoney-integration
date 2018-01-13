@@ -18,24 +18,34 @@
                     </div>
                     <div class="col-md-3">
                         <div class="panel panel-default ">
-                            <a href="{{ url('/topup') }}" class="no-hover">
+                            <a href="{{ url('/donation') }}" class="no-hover">
                                 <div class="panel-body">
-                                    <h3>Topup Saldo</h3>
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <h3>Donation</h3>
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="panel panel-default ">
-                            <a href="{{ url('/transactions') }}" class="no-hover">
-                                <div class="panel-body">
-                                    <h3>Transactions</h3>
-                                    <i class="fa fa-exchange" aria-hidden="true"></i>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    {{--<div class="col-md-3">--}}
+                        {{--<div class="panel panel-default ">--}}
+                            {{--<a href="{{ url('/topup') }}" class="no-hover">--}}
+                                {{--<div class="panel-body">--}}
+                                    {{--<h3>Topup Saldo</h3>--}}
+                                    {{--<i class="fa fa-plus" aria-hidden="true"></i>--}}
+                                {{--</div>--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-3">--}}
+                        {{--<div class="panel panel-default ">--}}
+                            {{--<a href="{{ url('/transactions') }}" class="no-hover">--}}
+                                {{--<div class="panel-body">--}}
+                                    {{--<h3>Transactions</h3>--}}
+                                    {{--<i class="fa fa-exchange" aria-hidden="true"></i>--}}
+                                {{--</div>--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>

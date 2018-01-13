@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\TMoney;
+namespace App\Http\Controllers\Api\TMoney;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 
 class GeneralController extends Controller
@@ -59,7 +60,6 @@ class GeneralController extends Controller
 
     public function myProfile(Request $request) {
         try {
-
             $response = myProfile($request['idTmoney'], $request['idFusion'], $request['token']);
             $body = $response->getBody();
             $json = json_decode($body);
@@ -67,5 +67,30 @@ class GeneralController extends Controller
         } catch (BadResponseException $e) {
             return $this->responseError($request, $e);
         }
+    }
+
+    public function getProduct(Request $request) {
+        try {
+            $response = $this->client->post(Config::get('tmoney.base_url').'/get-product', [
+                'headers' => [
+                    'Accept' => 'application/json'
+                ],
+                'form_params' => [
+                    'id' => $request['id'],
+                    'name' => $request['name'],
+                    'type' => $request['type'],
+                ]
+            ]);
+
+            $body = $response->getBody();
+            $json = json_decode($body);
+            return $this->responseSuccess($request, $json);
+        } catch (BadResponseException $e) {
+            return $this->responseError($request, $e);
+        }
+
+
+        dd($json);
+
     }
 }
