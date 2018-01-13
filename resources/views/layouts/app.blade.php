@@ -88,6 +88,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // setting numeral
+        numeral.register('locale', 'id', {
+            delimiters: {
+                thousands: '.',
+                decimal: ','
+            },
+            abbreviations: {
+                thousand: 'rb',
+                million: 'jt',
+                billion: 'm',
+                trillion: 't'
+            },
+            currency: {
+                symbol: 'Rp.'
+            }
+        });
+        numeral.locale('id');
+    </script>
     @include ('partials.footer')
     @stack('scripts')
 </body>

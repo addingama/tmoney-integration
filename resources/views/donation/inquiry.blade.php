@@ -28,7 +28,6 @@
                             </div>
                         </div>
                         <div class="panel-footer">
-
                             <button>Send Inquiry</button>
                         </div>
                     </div>
@@ -154,7 +153,7 @@
                     })
                     .catch(function (error) {
                         console.log(error);
-                        window.swal.close();
+                        showError(error.toString());
                     });
                 // stop the form from submitting the normal way and refreshing the page
                 event.preventDefault();
@@ -203,7 +202,7 @@
                     })
                     .catch(function (error) {
                         console.log(error);
-                        window.swal.close();
+                        showError(error.toString());
                     });
                 // stop the form from submitting the normal way and refreshing the page
                 event.preventDefault();

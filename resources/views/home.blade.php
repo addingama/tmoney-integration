@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="panel panel-default ">
                             <a href="#" class="no-hover">
                                 <div class="panel-body">
@@ -16,7 +16,17 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
+                        <div class="panel panel-default ">
+                            <a href="{{ url('/transaction-report') }}" class="no-hover">
+                                <div class="panel-body">
+                                    <h3>Transaction Report</h3>
+                                    <i class="fa fa-exchange" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="panel panel-default ">
                             <a href="{{ url('/donation') }}" class="no-hover">
                                 <div class="panel-body">
@@ -58,24 +68,6 @@
         localStorage.setItem('idTmoney', window.idTmoney);
         localStorage.setItem('idFusion', window.idFusion);
         localStorage.setItem('authorization', 'Bearer ' + window.authorization);
-
-        // setting numeral
-        numeral.register('locale', 'id', {
-            delimiters: {
-                thousands: '.',
-                decimal: ','
-            },
-            abbreviations: {
-                thousand: 'rb',
-                million: 'jt',
-                billion: 'm',
-                trillion: 't'
-            },
-            currency: {
-                symbol: 'Rp.'
-            }
-        });
-        numeral.locale('id');
 
         // update dashboard
         $('#balance-value').text(localStorage.getItem('balance'));

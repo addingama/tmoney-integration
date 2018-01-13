@@ -28,4 +28,5 @@ Route::group(['namespace' => 'Api\\TMoney'], function () {
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api\\TMoney'], function() {
     Route::post('/my_profile', 'GeneralController@myProfile');
     Route::post('/donation', 'DonationController@donation');
+    Route::get('/transaction-report', 'ReportController@transactionReport');
 });

@@ -23,7 +23,7 @@ class Controller extends BaseController
         return response()->json([
             'error' => true,
             'code' => $e->getCode(),
-            'url' => $request->url(),
+            'url' => $request->fullUrl(),
             'message' => $e->getMessage()
         ], $e->getCode());
     }
@@ -38,7 +38,7 @@ class Controller extends BaseController
     {
         return response()->json([
             'error' => false,
-            'url' => $request->url(),
+            'url' => $request->fullUrl(),
             'response' => $response
         ]);
 
