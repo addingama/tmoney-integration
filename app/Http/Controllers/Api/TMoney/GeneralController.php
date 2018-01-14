@@ -79,6 +79,7 @@ class GeneralController extends Controller
                     'id' => $request['id'],
                     'name' => $request['name'],
                     'type' => $request['type'],
+                    'group' => $request['group']
                 ]
             ]);
 
@@ -88,9 +89,27 @@ class GeneralController extends Controller
         } catch (BadResponseException $e) {
             return $this->responseError($request, $e);
         }
+    }
 
+    public function getProductNominal(Request $request) {
+        try {
+            $response = $this->client->post(Config::get('tmoney.base_url').'/get-product/nominal', [
+                'headers' => [
+                    'Accept' => 'application/json'
+                ],
+                'form_params' => [
+                    'id' => $request['id'],
+                    'name' => $request['name'],
+                    'type' => $request['type'],
+                    'group' => $request['group'],
+                ]
+            ]);
 
-        dd($json);
-
+            $body = $response->getBody();
+            $json = json_decode($body);
+            return $this->responseSuccess($request, $json);
+        } catch (BadResponseException $e) {
+            return $this->responseError($request, $e);
+        }
     }
 }

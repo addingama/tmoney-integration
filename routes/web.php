@@ -24,4 +24,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth', 'namespace' => 'TMoney'], function() {
     Route::get('donation', 'DonationController@inquiry');
     Route::get('transaction-report', 'ReportController@transactionReport');
+    Route::get('topup-prepaid', 'PurchaseController@topupPrepaid');
 });

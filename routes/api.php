@@ -23,10 +23,12 @@ Route::group(['namespace' => 'Api\\TMoney'], function () {
     Route::get('/email_check/{email}', 'GeneralController@emailCheck');
     Route::get('/email_verification/{activationCode}', 'GeneralController@emailVerification');
     Route::get('/get_product', 'GeneralController@getProduct');
+    Route::get('/get_product/nominal', 'GeneralController@getProductNominal');
 });
 
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api\\TMoney'], function() {
     Route::post('/my_profile', 'GeneralController@myProfile');
     Route::post('/donation', 'DonationController@donation');
     Route::get('/transaction-report', 'ReportController@transactionReport');
+    Route::post('/topup-prepaid', 'PurchaseController@topupPrepaid');
 });

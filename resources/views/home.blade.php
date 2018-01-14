@@ -36,6 +36,16 @@
                             </a>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default ">
+                            <a href="{{ url('/topup-prepaid') }}" class="no-hover">
+                                <div class="panel-body">
+                                    <h3>Beli Pulsa HP</h3>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                     {{--<div class="col-md-3">--}}
                         {{--<div class="panel panel-default ">--}}
                             {{--<a href="{{ url('/topup') }}" class="no-hover">--}}
