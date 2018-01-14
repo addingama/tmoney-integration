@@ -124,7 +124,6 @@
 @endpush
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
     <script>
         $(document).ready(function () {
             var operators = [];
@@ -233,7 +232,7 @@
                 // TODO: update nominal picker
                 // Find product code on operators array then show value
                 const productCode = $('#product-picker').val();
-                const selectedOperator = _.find(operators, function(operator) {
+                const selectedOperator = window._.find(operators, function(operator) {
                     return operator.code === productCode;
                 });
                 var nominalPicker = $('#nominal-picker');
