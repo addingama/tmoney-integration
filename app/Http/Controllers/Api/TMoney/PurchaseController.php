@@ -44,7 +44,8 @@ class PurchaseController extends Controller
                     'Authorization' => Config::get('tmoney.authorization'),
                     'Accept' => 'application/json'
                 ],
-                'form_params' => $params
+                'form_params' => $params,
+                'timeout' => 360
             ]);
             $body = $response->getBody();
             $json = json_decode($body);
@@ -52,5 +53,41 @@ class PurchaseController extends Controller
         } catch (BadResponseException $e) {
             return $this->responseError($request, $e);
         }
+    }
+
+    public function billPayment(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $params = [
+                'transactionType' => $request['transactionType'],
+                'idTmoney' => $user->idTmoney,
+                'idFusion' => $user->idFusion,
+                'productCode' => $request['productCode'],
+                'billNumber' => $request['billNumber'],
+                'amount' => $request['amount'],
+                'token' => $request['token'],
+                'transactionID' => $request['transactionID'],
+                'refNo' => $request['refNo'],
+                'pin' => $request['pin'],
+                'terminal' => Config::get('tmoney.terminal'),
+                'apiKey' => Config::get('tmoney.api_key'),
+            ];
+            Log::info($params);
+            $response = $this->client->post(Config::get('tmoney.base_url') . '/bill-payment', [
+                'headers' => [
+                    'Authorization' => Config::get('tmoney.authorization'),
+                    'Accept' => 'application/json'
+                ],
+                'form_params' => $params,
+                'timeout' => 360
+            ]);
+            $body = $response->getBody();
+            $json = json_decode($body);
+            return $this->responseSuccess($request, $json);
+        } catch (BadResponseException $e) {
+            return $this->responseError($request, $e);
+        }
+
     }
 }

@@ -8,26 +8,24 @@
                 <form id="inquiry" class="form-horizontal" method="POST">
                     {{ csrf_field() }}
                     <div class="panel panel-default">
-                        <div class="panel-heading">Beli Pulsa</div>
+                        <div class="panel-heading">Beli Token Listrik</div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label for="product-picker" class="col-md-4 control-label">Operator</label>
-
-                                <div class="col-md-6">
-                                    <select class="form-control" name="productCode" id="product-picker">
-                                    </select>
-                                </div>
-                            </div>
+                            <input type="hidden" value="070002" name="productCode"/>
                             <div class="form-group">
                                 <label for="nominal-picker" class="col-md-4 control-label">Nominal</label>
 
                                 <div class="col-md-6">
                                     <select class="form-control" name="nominal" id="nominal-picker">
+                                        <option value="20000">Rp.20.000,-</option>
+                                        <option value="50000">Rp.50.000,-</option>
+                                        <option value="100000">Rp.100.000,-</option>
+                                        <option value="200000">Rp.200.000,-</option>
+                                        <option value="50000">Rp.500.000,-</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="billNumber" class="col-md-4 control-label">No. Telepon</label>
+                                <label for="billNumber" class="col-md-4 control-label">No. Meter</label>
 
                                 <div class="col-md-6">
                                     <input id="billNumber" type="number" class="form-control" name="billNumber"
@@ -54,7 +52,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <a class=" btn-default pull-right" data-toggle="modal" data-target="#confirmation-modal">X</a>
-                            <h4>Konfirmasi</h4>
+                            <h4> Konfirmasi</h4>
                         </div>
 
                         <div class="panel-body">
@@ -126,15 +124,12 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
-            var operators = [];
-            const format = '$0,0.00';
-            getOperators();
             // submit form inquiry
             $('#inquiry').submit(function (event) {
                 showProgress();
-                axios.post('/api/topup-prepaid', {
+                axios.post('/api/bill-payment', {
                     transactionType: 1,
-                    productCode: $('#product-picker').val(),
+                    productCode: $('input[name=productCode]').val(),
                     amount: $('#nominal-picker').val(),
                     billNumber: $('input[name=billNumber]').val(),
                     token: localStorage.getItem('token'),
@@ -228,49 +223,6 @@
                 event.preventDefault();
             });
 
-            $('#product-picker').on('change', function() {
-                // TODO: update nominal picker
-                // Find product code on operators array then show value
-                const productCode = $('#product-picker').val();
-                const selectedOperator = window._.find(operators, function(operator) {
-                    return operator.code === productCode;
-                });
-                var nominalPicker = $('#nominal-picker');
-                nominalPicker.html('');
-                $.each(selectedOperator.value, function () {
-                    const value = parseInt(this);
-                    nominalPicker.append('<option value="' + value + '">' + numeral(value).format(format) + '</option>');
-                });
-
-            });
-
-            function getOperators() {
-                axios.get('/api/get_product/nominal?type=AIRTIME', {
-                    token: localStorage.getItem('token')
-                }, {
-                    headers: {
-                        Authorization: localStorage.getItem('authorization')
-                    }
-                })
-                    .then(function (response) {
-                        if (!response.data.error) {
-                            const products = response.data.response.product;
-                            var productPicker = $("#product-picker");
-                            productPicker.html('');
-                            $.each(products, function () {
-                                if (this.value) {
-                                    operators.push(this);
-                                    productPicker.append('<option value="' + this.code + '">' + this.name + '</option>');
-                                }
-                            });
-                            productPicker.trigger('change');
-                        }
-
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-            }
 
             function showProgress(title) {
                 window.swal({

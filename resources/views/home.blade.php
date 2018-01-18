@@ -10,7 +10,7 @@
                         <div class="panel panel-default ">
                             <a href="#" class="no-hover">
                                 <div class="panel-body">
-                                    <h3>Balance</h3>
+                                    <h3>Saldo</h3>
                                     <span id="balance-value">test</span>
                                 </div>
                             </a>
@@ -20,7 +20,7 @@
                         <div class="panel panel-default ">
                             <a href="{{ url('/transaction-report') }}" class="no-hover">
                                 <div class="panel-body">
-                                    <h3>Transaction Report</h3>
+                                    <h3>Laporan Transaksi</h3>
                                     <i class="fa fa-exchange" aria-hidden="true"></i>
                                 </div>
                             </a>
@@ -30,7 +30,7 @@
                         <div class="panel panel-default ">
                             <a href="{{ url('/donation') }}" class="no-hover">
                                 <div class="panel-body">
-                                    <h3>Donation</h3>
+                                    <h3>Donasi</h3>
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                 </div>
                             </a>
@@ -42,6 +42,16 @@
                                 <div class="panel-body">
                                     <h3>Beli Pulsa HP</h3>
                                     <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default ">
+                            <a href="{{ url('/pln-prepaid') }}" class="no-hover">
+                                <div class="panel-body">
+                                    <h3>Beli Token Listrik</h3>
+                                    <i class="fa fa-power-off" aria-hidden="true"></i>
                                 </div>
                             </a>
                         </div>

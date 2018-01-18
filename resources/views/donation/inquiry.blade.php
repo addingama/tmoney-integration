@@ -46,7 +46,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <a class=" btn-default pull-right" data-toggle="modal" data-target="#confirmation-modal">X</a>
-                            <h4>Donation Confirmation</h4>
+                            <h4>Konfirmasi</h4>
                         </div>
 
                         <div class="panel-body">

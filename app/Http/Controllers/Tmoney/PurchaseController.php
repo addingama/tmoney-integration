@@ -10,4 +10,8 @@ class PurchaseController extends Controller
     public function topupPrepaid(Request $request) {
         return view('purchase.topup_prepaid');
     }
+
+    public function plnPrepaid(Request $request) {
+        return view('purchase.pln_prepaid');
+    }
 }

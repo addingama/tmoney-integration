@@ -33,4 +33,5 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Api\\TMoney'], functio
     Route::post('/topup-prepaid', 'PurchaseController@topupPrepaid');
     Route::post('/change-pin', 'ProfileController@changePin');
     Route::get('/reset-pin', 'ProfileController@resetPin');
+    Route::post('/bill-payment', 'PurchaseController@billPayment');
 });

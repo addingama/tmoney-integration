@@ -26,4 +26,5 @@ Route::group(['middleware' => 'auth', 'namespace' => 'TMoney'], function() {
     Route::get('transaction-report', 'ReportController@transactionReport')->name('transaction-report');
     Route::get('topup-prepaid', 'PurchaseController@topupPrepaid')->name('topup-prepaid');
     Route::get('change-pin', 'ProfileController@changePin')->name('change-pin');
+    Route::get('pln-prepaid', 'PurchaseController@plnPrepaid')->name('pln-prepaid');
 });
