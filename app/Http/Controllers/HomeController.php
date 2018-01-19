@@ -27,7 +27,6 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // generate passport token
 
         JavaScript::put([
             TMONEY_TOKEN => session(TMONEY_TOKEN),

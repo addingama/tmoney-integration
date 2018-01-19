@@ -11,7 +11,7 @@
                             <a href="#" class="no-hover">
                                 <div class="panel-body">
                                     <h3>Saldo</h3>
-                                    <span id="balance-value">test</span>
+                                    <span id="balance-value">Rp.0,-</span>
                                 </div>
                             </a>
                         </div>
