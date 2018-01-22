@@ -1,51 +1,87 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# TMoney Integration Sample Project
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Requirements
 
-## About Laravel
+- PHP >= 5.6.4
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- XML PHP Extension
+- mySql
+- GIT
+- Node.js
+- NPM
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Source code installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+First, make sure you already install `GIT` and setup your `ssh key`. You can download GIT installer from [this link](https://git-scm.com). After that, you need to setup your ssh key from terminal. Open terminal then run this command
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+```
+ssh-keygen
+```
 
-## Learning Laravel
+Fill all the data, for the password, it's up to you to fill it or leave it blank.
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+Then clone the source code using `GIT` so you can access move to other branches to see all the code changes for each features. 
 
-## Laravel Sponsors
+Open your terminal and navigate to your project directory and run this command
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+```
+git clone https://github.com/dashracer/tmoney-integration.git sample-project
+```
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
+Those command will create a new directory named `sample-project`, then you need to navigate to that folder in terminal using ```
+cd sample-project
+```
 
-## Contributing
+After that, you need to update the dependencies using command
+```
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Create a database using PhpMyAdmin or terminal with name `tmoney-integration-sample` and leave it with no table.
 
-## Security Vulnerabilities
+Open the source code project on IDE like sublime or others then copy `.env.example` to `.env` or you can rename `.env.example` to '.env`, then update the value
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```
+APP_NAME="TMoney Sample Project"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_LOG_LEVEL=debug
+APP_URL=http://localhost
 
-## License
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tmoney-integration-sample
+DB_USERNAME=CHANGE_THIS_WITH_YOUR_DB_USERNAME
+DB_PASSWORD=CHANGE_THIS_WITH_YOUR_DB_PASSWORD
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Then update your `APP_KEY` by running this command on terminal
+```
+php artisan key:generate
+```
+
+After that, you need to execute the migration script by running this command
+```
+php artisan migrate
+```
+
+If you encounter any error on this step, make sure you delete all the tables first before executing the migration again.
+This is other solution for your problem that you may encounter:
+
+- [SQL error when migrating tables](https://github.com/laravel/framework/issues/17508)
+
+After all installed, now you can test it by running the laravel server by this command
+```
+php artisan serve
+```
+
+## Notes
+
+- Default user type for TMoney is Basic Service, this user can have balance up to 1.000.000 and cannot do transfer balance.
+- You need to contact TMoney Representative or Pak Putra if you want to upgrade to Full Service and topup the balance so you can try some payment or purchase.
+
